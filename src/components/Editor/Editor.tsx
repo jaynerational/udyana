@@ -6,9 +6,10 @@ import { useTypingVelocity } from '../../hooks/useTypingVelocity';
 
 interface EditorProps {
     onVelocityChange?: (velocity: number) => void;
+    onPreserve?: () => void;
 }
 
-const Editor = ({ onVelocityChange }: EditorProps) => {
+const Editor = ({ onVelocityChange, onPreserve }: EditorProps) => {
     const { content, lastActive, emotion, updateContent, solidifyThought } = useThought();
     const { velocity, recordKeystroke } = useTypingVelocity();
     const [opacity, setOpacity] = useState(1);
@@ -37,8 +38,11 @@ const Editor = ({ onVelocityChange }: EditorProps) => {
     };
 
     const handleSolidify = async () => {
-        await solidifyThought();
-        setOpacity(1); // Reset opacity for fresh canvas
+        const success = await solidifyThought();
+        if (success) {
+            setOpacity(1); // Reset opacity for fresh canvas
+            onPreserve?.(); // Notify parent for onboarding
+        }
     };
 
     return (

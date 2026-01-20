@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2: Typing Animation — 1080×1080</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1080px;
+            height: 1080px;
+            background: #FDF9F6;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .text-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .text {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            font-size: 56px;
+            color: #3D3A38;
+            text-align: center;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #E8A4C4;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1080" height="1080"></canvas>
+    <div class="text-container">
+        <span class="text" id="typingText"></span><span class="cursor"></span>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const petals = [];
+        const colors = ['#E8A4C4', '#C4B0E8', '#F0C4D8', '#A4D4C4'];
+
+        class Petal {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = 8 + Math.random() * 12;
+                this.speedY = 0.5 + Math.random() * 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = 0.6 + Math.random() * 0.3;
+                this.swayOffset = Math.random() * Math.PI * 2;
+                this.swaySpeed = 0.015 + Math.random() * 0.015;
+            }
+
+            update(time) {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(time * this.swaySpeed + this.swayOffset) * 0.5;
+                this.rotation += this.rotationSpeed;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.moveTo(0, -this.size);
+                ctx.bezierCurveTo(this.size, -this.size, this.size, this.size * 0.5, 0, this.size);
+                ctx.bezierCurveTo(-this.size, this.size * 0.5, -this.size, -this.size, 0, -this.size);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        const text = "it's raining again...";
+        const typingTextEl = document.getElementById('typingText');
+        let charIndex = 0;
+        let time = 0;
+
+        function typeChar() {
+            if (charIndex < text.length) {
+                typingTextEl.textContent = text.slice(0, charIndex + 1);
+                charIndex++;
+
+                for (let i = 0; i < 3; i++) {
+                    petals.push(new Petal(
+                        540 + (Math.random() - 0.5) * 200,
+                        500
+                    ));
+                }
+
+                setTimeout(typeChar, 120 + Math.random() * 80);
+            } else {
+                setTimeout(() => {
+                    charIndex = 0;
+                    typingTextEl.textContent = '';
+                    typeChar();
+                }, 4000);
+            }
+        }
+
+        function animate() {
+            time++;
+            ctx.fillStyle = '#FDF9F6';
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            for (let i = petals.length - 1; i >= 0; i--) {
+                petals[i].update(time);
+                petals[i].draw();
+
+                if (petals[i].y > 1120) {
+                    petals.splice(i, 1);
+                }
+            }
+
+            if (petals.length > 150) {
+                petals.splice(0, petals.length - 150);
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(typeChar, 1500);
+    </script>
+</body>
+
+</html>

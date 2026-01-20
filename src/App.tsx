@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Editor from './components/Editor/Editor';
 import Shell from './components/Layout/Shell';
 import Garden from './components/Garden/Garden';
 import Landing from './components/Onboarding/Landing';
 import FirstVisit from './components/Onboarding/FirstVisit';
+import { FirstPreserveGuide, GardenTooltip, isFirstPreserve, isFirstGardenVisit } from './components/Onboarding/Guides';
 import { Flower2 } from 'lucide-react';
 
 function App() {
@@ -11,6 +12,43 @@ function App() {
     const [showGarden, setShowGarden] = useState(false);
     const [showLanding, setShowLanding] = useState(true);
     const [showFirstVisit, setShowFirstVisit] = useState(false);
+    const [showFirstPreserveGuide, setShowFirstPreserveGuide] = useState(false);
+    const [showGardenTooltip, setShowGardenTooltip] = useState(false);
+    const [isFirstGarden, setIsFirstGarden] = useState(isFirstGardenVisit());
+
+    // Called when user preserves a thought
+    const handlePreserve = useCallback(() => {
+        if (isFirstPreserve()) {
+            setShowFirstPreserveGuide(true);
+        }
+    }, []);
+
+    // Go to garden from the first preserve guide
+    const handleGoToGardenFromGuide = () => {
+        setShowFirstPreserveGuide(false);
+        setShowGarden(true);
+    };
+
+    // Dismiss the first preserve guide (show tooltip hint instead)
+    const handleDismissPreserveGuide = () => {
+        setShowFirstPreserveGuide(false);
+        setShowGardenTooltip(true);
+        // Hide tooltip after 5 seconds
+        setTimeout(() => setShowGardenTooltip(false), 5000);
+    };
+
+    // When opening garden
+    const handleOpenGarden = () => {
+        setShowGardenTooltip(false);
+        setIsFirstGarden(isFirstGardenVisit());
+        setShowGarden(true);
+    };
+
+    // When closing garden
+    const handleCloseGarden = () => {
+        setShowGarden(false);
+        setIsFirstGarden(false); // Don't show onboarding again
+    };
 
     return (
         <>
@@ -20,14 +58,27 @@ function App() {
                     setShowFirstVisit(true);
                 }} />
             ) : showGarden ? (
-                <Garden onClose={() => setShowGarden(false)} />
+                <Garden
+                    onClose={handleCloseGarden}
+                    showOnboarding={isFirstGarden}
+                />
             ) : (
                 <>
                     {showFirstVisit && <FirstVisit onDismiss={() => setShowFirstVisit(false)} />}
+                    {showFirstPreserveGuide && (
+                        <FirstPreserveGuide
+                            onGoToGarden={handleGoToGardenFromGuide}
+                            onDismiss={handleDismissPreserveGuide}
+                        />
+                    )}
+                    <GardenTooltip visible={showGardenTooltip} />
                     <Shell typingVelocity={typingVelocity}>
-                        <Editor onVelocityChange={setTypingVelocity} />
+                        <Editor
+                            onVelocityChange={setTypingVelocity}
+                            onPreserve={handlePreserve}
+                        />
                         <button
-                            onClick={() => setShowGarden(true)}
+                            onClick={handleOpenGarden}
                             className="btn-icon"
                             style={{
                                 position: 'fixed',

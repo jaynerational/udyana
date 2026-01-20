@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { db, Thought } from '../../db';
 import { Emotion, emotionColors } from '../../utils/emotionDetector';
 import { X, Sparkles, Square, Smartphone } from 'lucide-react';
+import { GardenOnboarding, markGardenVisited } from '../Onboarding/Guides';
 
 interface ConstellationNode {
     id: number;
@@ -19,6 +20,7 @@ interface ConstellationNode {
 
 interface GardenProps {
     onClose?: () => void;
+    showOnboarding?: boolean;
 }
 
 const emotionCenters: Record<Emotion, { x: number; y: number }> = {
@@ -31,12 +33,13 @@ const emotionCenters: Record<Emotion, { x: number; y: number }> = {
     confusion: { x: 0.4, y: 0.8 },
 };
 
-const Garden = ({ onClose }: GardenProps) => {
+const Garden = ({ onClose, showOnboarding = false }: GardenProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [thoughts, setThoughts] = useState<Thought[]>([]);
     const nodesRef = useRef<ConstellationNode[]>([]);
     const animationRef = useRef<number>(0);
     const timeRef = useRef(0);
+    const [showOnboardingModal, setShowOnboardingModal] = useState(showOnboarding);
 
     // Load solidified thoughts
     useEffect(() => {
@@ -603,6 +606,14 @@ const Garden = ({ onClose }: GardenProps) => {
                         waiting for your first bloom
                     </p>
                 </div>
+            )}
+
+            {/* Garden Onboarding for first-time visitors */}
+            {showOnboardingModal && thoughts.length > 0 && (
+                <GardenOnboarding onDismiss={() => {
+                    markGardenVisited();
+                    setShowOnboardingModal(false);
+                }} />
             )}
         </div>
     );

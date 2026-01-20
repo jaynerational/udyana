@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<brand_system name="udyāna" version="6.0" theme="Morning Bloom">
+
+  <identity>
+    <name>udyāna</name>
+    <pronunciation>ood-YAH-nah</pronunciation>
+    <meaning>Sanskrit for "garden" — a place where thoughts bloom</meaning>
+    <tagline primary="true">a gentle space for your thoughts to breathe</tagline>
+    <tagline>let your emotions bloom, then let them go</tagline>
+    <tagline>presence over permanence</tagline>
+    <tagline>write. feel. release.</tagline>
+  </identity>
+
+  <philosophy>
+    <core_concept>
+      Most journaling apps encourage permanence. udyāna embraces impermanence.
+      Thoughts naturally fade over 24 hours — like petals falling from a flower.
+      Users choose what to preserve in their personal "garden" of memories.
+    </core_concept>
+    <emotional_tone>
+      Gentle, warm, feminine, meditative, non-judgmental.
+      NOT clinical, harsh, corporate, or productivity-focused.
+    </emotional_tone>
+    <target_audience>
+      People seeking emotional clarity through gentle reflection.
+      Those overwhelmed by permanent digital footprints.
+      Mindfulness practitioners, journalers, creatives.
+    </target_audience>
+  </philosophy>
+
+  <color_palette theme="Morning Bloom">
+    
+    <category name="Backgrounds">
+      <color name="Void" hex="#FDF9F6" rgb="253, 249, 246" usage="Base canvas, app background" />
+      <color name="Surface" hex="#FFFFFF" rgb="255, 255, 255" usage="Cards, input fields" />
+      <color name="Elevated" hex="#FFF8F3" rgb="255, 248, 243" usage="Modals, overlays" />
+      <color name="Hover" hex="#FFF0E8" rgb="255, 240, 232" usage="Interactive hover states" />
+    </category>
+
+    <category name="Primary Accents">
+      <color name="Rose" hex="#E8A4C4" rgb="232, 164, 196" usage="Primary accent, CTAs, links" primary="true" />
+      <color name="Lavender" hex="#C4B0E8" rgb="196, 176, 232" usage="Secondary accent, tags" />
+      <color name="Mint" hex="#A4D4C4" rgb="164, 212, 196" usage="Tertiary accent, success states" />
+      <color name="Honey" hex="#F0C898" rgb="240, 200, 152" usage="Warm accent, warnings" />
+      <color name="Blush" hex="#F0C4D8" rgb="240, 196, 216" usage="Love emotion, soft highlights" />
+    </category>
+
+    <category name="Text Colors">
+      <color name="Primary" hex="#3D3A38" rgb="61, 58, 56" usage="Main body text, headings" />
+      <color name="Secondary" hex="#6B6560" rgb="107, 101, 96" usage="Supporting text, descriptions" />
+      <color name="Muted" hex="#9A948E" rgb="154, 148, 142" usage="Placeholders, subtle labels" />
+      <color name="Ghost" hex="#C8C4BE" rgb="200, 196, 190" usage="Disabled states, whispers" />
+    </category>
+
+    <category name="Emotion Colors">
+      <emotion name="Joy" hex="#E8A4C4" flower_shape="Radiant, pointed petals" />
+      <emotion name="Peace" hex="#A4D4C4" flower_shape="Lotus, rounded petals" />
+      <emotion name="Melancholy" hex="#C4B0E8" flower_shape="Willow, thin drooping petals" />
+      <emotion name="Anxiety" hex="#F0C898" flower_shape="Aster, needle-like petals" />
+      <emotion name="Anger" hex="#E89494" flower_shape="Flame, jagged petals" />
+      <emotion name="Love" hex="#F0C4D8" flower_shape="Heart-clefted petals" />
+      <emotion name="Confusion" hex="#D4C4E8" flower_shape="Fragmented, asymmetric petals" />
+    </category>
+
+  </color_palette>
+
+  <typography>
+    <font_family name="DM Sans" usage="UI, body text, buttons" source="Google Fonts">
+      <weight value="400">Regular body text</weight>
+      <weight value="500">Emphasized text, labels</weight>
+      <weight value="600">Buttons, strong emphasis</weight>
+    </font_family>
+    <font_family name="Fraunces" usage="Headings, display, logo" source="Google Fonts">
+      <weight value="400">Subheadings</weight>
+      <weight value="500">Main headings, app name</weight>
+    </font_family>
+    
+    <type_scale>
+      <size name="xs" value="0.75rem" usage="Fine print, timestamps" />
+      <size name="sm" value="0.875rem" usage="Labels, secondary info" />
+      <size name="base" value="1rem" usage="Body text" />
+      <size name="lg" value="1.25rem" usage="Editor text, emphasis" />
+      <size name="xl" value="1.75rem" usage="Section headings" />
+      <size name="2xl" value="2.5rem" usage="Page titles" />
+      <size name="3xl" value="3.5rem" usage="Hero, landing page" />
+    </type_scale>
+  </typography>
+
+  <visual_elements>
+    
+    <element name="Floating Petals">
+      <description>Gentle petal shapes drift downward on the landing page</description>
+      <colors>#E8A4C4, #C4B0E8, #A4D4C4, #F0C898, #F0C4D8</colors>
+      <animation>Slow drift, 8-14 second duration, slight rotation</animation>
+      <opacity>0.6</opacity>
+    </element>
+
+    <element name="Gradient Orb">
+      <description>Soft radial gradient that breathes in the background</description>
+      <gradient>radial-gradient(circle, rgba(232,164,196,0.15) 0%, rgba(196,176,232,0.1) 40%, transparent 70%)</gradient>
+      <animation>Gentle scale pulse, 6 second cycle</animation>
+    </element>
+
+    <element name="Velocity Particles">
+      <description>Rose and lavender particles emanate from typing activity</description>
+      <colors>#E8A4C4 (rose), #C4B0E8 (lavender)</colors>
+      <behavior>Spawn rate increases with typing speed, fade out naturally</behavior>
+    </element>
+
+    <element name="Garden Flowers">
+      <description>Each preserved thought becomes a flower in the constellation garden</description>
+      <petal_count>5-18 petals based on content length</petal_count>
+      <petal_style>Varies by emotion — see emotion_colors above</petal_style>
+      <glow>Soft radial glow matching emotion color</glow>
+      <animation>Gentle breathing pulse, 3 second cycle</animation>
+    </element>
+
+    <element name="Connection Lines">
+      <description>Curved Bezier lines connect flowers of the same emotion</description>
+      <style>Subtle, same color as emotion, 20% opacity</style>
+    </element>
+
+  </visual_elements>
+
+  <ui_components>
+    
+    <component name="Primary Button">
+      <background>linear-gradient(135deg, #E8A4C4 0%, #D494B4 100%)</background>
+      <text_color>#FFFFFF</text_color>
+      <border_radius>9999px (pill shape)</border_radius>
+      <shadow>0 4px 20px rgba(232, 164, 196, 0.3)</shadow>
+      <hover>Scale 1.02, lift 1px, brightness 1.05</hover>
+    </component>
+
+    <component name="Ghost Button">
+      <background>rgba(255, 255, 255, 0.7)</background>
+      <border>1px solid rgba(61, 58, 56, 0.06)</border>
+      <text_color>#3D3A38</text_color>
+      <border_radius>12px</border_radius>
+      <hover>Scale 1.02, inner glow</hover>
+    </component>
+
+    <component name="Icon Button">
+      <shape>Circle, 48px diameter</shape>
+      <background>rgba(255, 255, 255, 0.7)</background>
+      <hover>Scale 1.08, rose glow</hover>
+    </component>
+
+    <component name="Phase Indicator">
+      <description>Shows current thought decay phase</description>
+      <phases>
+        <phase name="resting" color="var(--accent-primary)" range="75-100%" />
+        <phase name="drifting" color="var(--accent-secondary)" range="50-75%" />
+        <phase name="fading" color="var(--accent-warm)" range="25-50%" />
+        <phase name="releasing" color="var(--accent-tertiary)" range="0-25%" />
+      </phases>
+      <glow>Breathing dot animation, 3 second cycle</glow>
+    </component>
+
+    <component name="Modal">
+      <background>#FFFFFF</background>
+      <border_radius>24px</border_radius>
+      <shadow>0 16px 48px rgba(61, 58, 56, 0.1)</shadow>
+      <overlay>rgba(61, 58, 56, 0.3) with blur(8px)</overlay>
+    </component>
+
+  </ui_components>
+
+  <animations>
+    <easing name="spring" value="cubic-bezier(0.34, 1.56, 0.64, 1)" usage="Bouncy interactions" />
+    <easing name="friction" value="cubic-bezier(0.4, 0, 0.2, 1)" usage="Smooth stops" />
+    <easing name="expo" value="cubic-bezier(0.19, 1, 0.22, 1)" usage="Dramatic reveals" />
+    
+    <timing name="fast" value="0.2s" usage="Hover states" />
+    <timing name="medium" value="0.5s" usage="Transitions" />
+    <timing name="slow" value="0.8s" usage="Page changes" />
+    <timing name="cinematic" value="1.2s" usage="Landing animations" />
+  </animations>
+
+  <app_screens>
+    
+    <screen name="Landing">
+      <elements>Floating petals, breathing orb, centered logo, tagline, "Begin your journey" CTA</elements>
+      <mood>Calm arrival, anticipation, warmth</mood>
+    </screen>
+
+    <screen name="First Visit Modal">
+      <elements>Heart icon, welcome message, explanation of fading concept</elements>
+      <mood>Welcoming, explanatory, gentle onboarding</mood>
+    </screen>
+
+    <screen name="Editor">
+      <elements>Centered textarea, phase indicator, emotion badge, preserve/share buttons</elements>
+      <mood>Focused, meditative, spacious</mood>
+      <background_effects>Velocity particles when typing, spotlight following cursor</background_effects>
+    </screen>
+
+    <screen name="Garden">
+      <elements>Canvas constellation of flower nodes, emotion legend, export buttons</elements>
+      <mood>Reflective, proud, beautiful visualization of emotional journey</mood>
+    </screen>
+
+    <screen name="Export Card">
+      <formats>Square (1080x1080), Story (1080x1920)</formats>
+      <elements>Rose gold border, emotion-based gradient background, thought text, watermark</elements>
+      <mood>Shareable, aesthetic, Instagram-worthy</mood>
+    </screen>
+
+  </app_screens>
+
+  <marketing_guidelines>
+    
+    <do>
+      <item>Use soft gradients and glass effects</item>
+      <item>Show the app in use with real emotional content (anonymized)</item>
+      <item>Emphasize the calming, meditative experience</item>
+      <item>Use lowercase text for gentle tone</item>
+      <item>Include flower/petal/bloom metaphors</item>
+      <item>Show the Garden visualization as hero imagery</item>
+      <item>Highlight the "thoughts fade" concept visually</item>
+    </do>
+
+    <dont>
+      <item>Use harsh colors, neon, or high contrast</item>
+      <item>Make it feel like a productivity app</item>
+      <item>Use corporate language or jargon</item>
+      <item>Show cluttered interfaces</item>
+      <item>Use aggressive CTAs like "SIGN UP NOW"</item>
+      <item>Mention features in a bullet-point listicle way</item>
+    </dont>
+
+    <video_guidelines>
+      <pacing>Slow, meditative cuts. 3-5 second holds minimum.</pacing>
+      <music>Lo-fi, ambient, piano. No lyrics. Gentle tempo.</music>
+      <transitions>Fade, soft blur, or petal wipe</transitions>
+      <text_animation>Fade in with slight upward motion</text_animation>
+      <aspect_ratios>9:16 (Stories/Reels), 1:1 (Feed), 16:9 (YouTube)</aspect_ratios>
+    </video_guidelines>
+
+    <social_copy_tone>
+      Lowercase, gentle, introspective.
+      Ask questions rather than make statements.
+      Example: "what if your thoughts could bloom... and then gently let go?"
+    </social_copy_tone>
+
+  </marketing_guidelines>
+
+  <assets_needed>
+    <asset type="app_icon" description="Garden flower icon, rose/lavender gradient" />
+    <asset type="og_image" dimensions="1200x630" description="App preview with Garden visualization" />
+    <asset type="story_template" dimensions="1080x1920" description="Phone mockup with editor screen" />
+    <asset type="carousel" slides="5" description="Feature walkthrough: Write → Feel → Fade → Preserve → Garden" />
+    <asset type="video_demo" duration="30s" description="Editor flow with typing particles, then Garden reveal" />
+    <asset type="loop_animation" duration="6s" description="Floating petals on gradient background for Stories" />
+  </assets_needed>
+
+</brand_system>

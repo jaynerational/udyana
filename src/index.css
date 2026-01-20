@@ -703,3 +703,16 @@ textarea {
     padding-top: max(var(--sp-4), env(safe-area-inset-top));
   }
 }
+
+/* Onboarding Animations */
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
