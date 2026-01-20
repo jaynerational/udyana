@@ -9,7 +9,7 @@ export const useThought = () => {
     const [content, setContent] = useState('');
     const [lastActive, setLastActive] = useState(Date.now());
     const [emotion, setEmotion] = useState<Emotion>('peace');
-    const debounceRef = useRef<NodeJS.Timeout | null>(null);
+    const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // Load the most recent NON-solidified thought on mount
     useEffect(() => {
